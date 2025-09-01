@@ -13,7 +13,21 @@ namespace MusteriBakiyeSeyri.DataAccess.Configuration
     {
         public void Configure(EntityTypeBuilder<MusteriFatura> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("musteri_fatura_table");
+            builder.HasIndex(i => i.Id);
+
+            builder.Property(p => p.FaturaTarihi)
+                   .HasColumnName("fatura_tarihi")
+                   .HasColumnType("datetime");
+
+            builder.Property(p => p.FaturaTutari).HasColumnType("decimal(18,2)")
+                   .HasColumnName("fatura_tutari");
+
+            builder.Property(p => p.OdemeTarihi)
+                   .HasColumnName("odeme_tarihi")
+                   .HasColumnType("datetime");
+
+            builder.HasOne(x=>x.MusteriTanim).WithMany(y => y.MusteriFaturalari).HasForeignKey(z => z.MusteriId);   
         }
     }
 }

@@ -13,6 +13,9 @@ public class MusteriTanimConfiguration : IEntityTypeConfiguration<MusteriTanim>
 {
     public void Configure(EntityTypeBuilder<MusteriTanim> builder)
     {
-        throw new NotImplementedException();
+        builder.HasIndex(x => x.Id);
+        builder.ToTable("musteri_tanim_table");
+
+        builder.Property(x => x.Unvan).HasColumnName("UNVAN").HasColumnType("char(255)");
     }
 }
