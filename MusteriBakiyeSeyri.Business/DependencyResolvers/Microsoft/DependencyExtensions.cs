@@ -19,6 +19,7 @@ namespace MusteriBakiyeSeyri.Business.DependencyResolvers.Microsoft
             });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IMusteriTanimService, MusteriTanimService>();
+            services.AddScoped<IMusteriFaturaService, MusteriFaturaService>();
         }
     }
 

@@ -1,0 +1,27 @@
+﻿@model MusteriBakiyeSeyri.DTOs.MusteriFatura.MusteriFaturaAddDto
+
+@{ 
+
+}
+<div class="container mt-4">
+    <h3>Müşteri Fatura</h3>
+    <form asp-action="Create" asp-controller="MusteriFatura" method="post">
+
+        <div class="mb-3">
+            <label for="musteriUnvan" class="form-label">Fatura Tarihi</label>
+            <input type="datetime" class="form-control" asp-for="FaturaTarihi" placeholder="Fatura Tarihi">
+        </div>
+        <div class="mb-3">
+            <label for="musteriUnvan" class="form-label">Odeme Tarihi</label>
+            <input type="datetime" class="form-control" asp-for="OdemeTarihi" placeholder="Odeme Tarihi">
+        </div>
+        <div class="mb-3">
+            <label for="musteriUnvan" class="form-label">Fatura Tutarı</label>
+            <input type="datetime" class="form-control" asp-for="FaturaTutari" placeholder="Fatura Tutarı">
+        </div>
+        <select asp-for="MusteriId" asp-items="ViewBag.MusteriListe" class="form-control">
+            <option value="">Müşteri Seçiniz</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </form>
+</div>
