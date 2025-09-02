@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Bakiye Seyri";
+    var data = ViewBag.EnYuksekBorc as MusteriBakiyeSeyri.DTOs.MusteriFatura.MusteriFaturaEnYuksekBorcDonemiDto;
+}
+
+<h2>En yüksek borç ve tarihi: @data.FaturaTutari & @data.Tarih </h2>
+
+<div class="container mt-4">
+    <h3>Müşteri Bakiye Seyri</h3>
+    <canvas id="bakiyeChart" width="900" height="450"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var seyirData = @Html.Raw(ViewBag.SeyirJson);
+
+    var labels = seyirData.map(x => x.Tarih);
+    var bakiyeler = seyirData.map(x => x.Bakiye);
+    var degisimler = seyirData.map(x => x.Degisim);
+
+    var ctx = document.getElementById('bakiyeChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    type: 'line',
+                    label: 'Bakiye Seyri',
+                    data: bakiyeler,
+                    borderColor: 'blue',
+                    backgroundColor: 'rgba(0, 0, 255, 0.1)',
+                    yAxisID: 'yBakiye',
+                    tension: 0.2,
+                    fill: true,
+                    pointRadius: 3,
+                    pointBackgroundColor: 'blue'
+                },
+                {
+                    type: 'bar',
+                    label: 'Günlük Değişim',
+                    data: degisimler,
+                    backgroundColor: function(ctx) {
+                        return ctx.raw >= 0 ? 'rgba(0, 200, 0, 0.6)' : 'rgba(200, 0, 0, 0.6)';
+                    },
+                    yAxisID: 'yDegisim'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' }
+            },
+            scales: {
+                yBakiye: {
+                    type: 'linear',
+                    position: 'left',
+                    title: { display: true, text: 'Bakiye (₺)' }
+                },
+                yDegisim: {
+                    type: 'linear',
+                    position: 'right',
+                    title: { display: true, text: 'Değişim (₺)' },
+                    grid: { drawOnChartArea: false }
+                },
+                x: {
+                    title: { display: true, text: 'Tarih' }
+                }
+            }
+        }
+    });
+</script>

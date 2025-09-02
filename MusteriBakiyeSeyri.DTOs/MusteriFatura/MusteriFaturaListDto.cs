@@ -7,6 +7,6 @@
         public string MusteriUnvan { get; set; }
         public DateTime FaturaTarihi { get; set; }
         public decimal FaturaTutari { get; set; }
-        public DateTime OdemeTarihi { get; set; }
+        public DateTime? OdemeTarihi { get; set; }
     }
 }

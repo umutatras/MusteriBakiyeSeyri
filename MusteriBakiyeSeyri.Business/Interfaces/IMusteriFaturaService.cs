@@ -9,5 +9,8 @@ namespace MusteriBakiyeSeyri.Business.Interfaces
         Task AddMusteriFaturaAsync(MusteriFaturaAddDto musteriFatura);
         Task UpdateMusteriFatura(MusteriFaturaUpdateDto MusteriFatura);
         Task DeleteProductAsync(int id);
+
+        Task<MusteriFaturaEnYuksekBorcDonemiDto> EnYuksekBorcDonemiHesapla(int musteriId);
+        Task<List<GrafikVerisiDto>> GrafikVerisi(int musteriId);
     }
 }

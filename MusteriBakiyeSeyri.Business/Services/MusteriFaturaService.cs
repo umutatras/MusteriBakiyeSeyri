@@ -39,6 +39,37 @@ namespace MusteriBakiyeSeyri.Business.Services
             await _uow.SaveChangesAsync();
         }
 
+        public async Task<MusteriFaturaEnYuksekBorcDonemiDto> EnYuksekBorcDonemiHesapla(int musteriId)
+        {
+            var kesimTarihleri = _uow.GetRepository<MusteriFatura>().GetQuery().Where(f => f.MusteriId == musteriId)
+                .GroupBy(f => f.FaturaTarihi.Date)
+                .Select(g => new { Tarih = g.Key, Degisim = g.Sum(s => s.FaturaTutari) });
+
+            var odemeler = _uow.GetRepository<MusteriFatura>().GetQuery().Where(f => f.MusteriId == musteriId&&f.OdemeTarihi!=null)
+               .GroupBy(f => f.OdemeTarihi.Value.Date)
+               .Select(g => new { Tarih = g.Key, Degisim = -g.Sum(s => s.FaturaTutari) });
+
+            var hareketler=kesimTarihleri.Union(odemeler)
+                .OrderBy(h => h.Tarih)
+                .ToList();
+
+            decimal bakiye = 0;
+            var seyir = hareketler
+                .Select(h => new
+                {
+                    h.Tarih,
+                    h.Degisim,
+                    Bakiye = (bakiye += h.Degisim)
+                })
+                .ToList();
+
+            var maxBorcluAn = seyir.OrderByDescending(s => s.Bakiye).FirstOrDefault();
+            var sonuc = new MusteriFaturaEnYuksekBorcDonemiDto();
+            sonuc.FaturaTutari = maxBorcluAn.Bakiye;
+            sonuc.Tarih = maxBorcluAn.Tarih;
+            return sonuc;
+        }
+
         public async Task<List<MusteriFaturaListDto>> GetAllMusteriFaturaAsync()
         {
             var liste = await _uow.GetRepository<MusteriFatura>().GetQuery().Include(i=>i.MusteriTanim).Select(s => new MusteriFaturaListDto
@@ -48,7 +79,7 @@ namespace MusteriBakiyeSeyri.Business.Services
                 Id= s.Id,
                 MusteriId=s.MusteriId,
                 MusteriUnvan = s.MusteriTanim.Unvan,
-                OdemeTarihi = s.OdemeTarihi
+                OdemeTarihi = s.OdemeTarihi==null?null: s.OdemeTarihi
             }).ToListAsync();
             return liste;
         }
@@ -67,6 +98,32 @@ namespace MusteriBakiyeSeyri.Business.Services
             dto.MusteriId = entity.MusteriId;
             dto.OdemeTarihi = entity.OdemeTarihi;
             return dto;
+        }
+
+        public async Task<List<GrafikVerisiDto>> GrafikVerisi(int musteriId)
+        {
+            var kesimTarihleri = _uow.GetRepository<MusteriFatura>().GetQuery().Where(f => f.MusteriId == musteriId)
+               .GroupBy(f => f.FaturaTarihi.Date)
+               .Select(g => new { Tarih = g.Key, Degisim = g.Sum(s => s.FaturaTutari) });
+
+            var odemeler = _uow.GetRepository<MusteriFatura>().GetQuery().Where(f => f.MusteriId == musteriId && f.OdemeTarihi != null)
+               .GroupBy(f => f.OdemeTarihi.Value.Date)
+               .Select(g => new { Tarih = g.Key, Degisim = -g.Sum(s => s.FaturaTutari) });
+
+            var hareketler = kesimTarihleri.Union(odemeler)
+                .OrderBy(h => h.Tarih)
+                .ToList();
+
+            decimal bakiye = 0;
+            var seyir = hareketler
+                .Select(h => new GrafikVerisiDto
+                {
+                    Tarih=h.Tarih.ToString("yyyy-MM-dd"),
+                    Degisim=h.Degisim,
+                    Bakiye = (bakiye += h.Degisim)
+                })
+                .ToList();
+            return seyir;
         }
 
         public async Task UpdateMusteriFatura(MusteriFaturaUpdateDto MusteriFatura)

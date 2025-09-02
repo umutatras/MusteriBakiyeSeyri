@@ -20,6 +20,14 @@ namespace MusteriBakiyeSeyri.WebApp.Controllers
             var liste=await _musteriFaturaService.GetAllMusteriFaturaAsync();
             return View(liste);
         }
+        public async Task<IActionResult> EnYuksekBorcDonemi(int musteriId)
+        {
+           ViewBag.EnYuksekBorc = await _musteriFaturaService.EnYuksekBorcDonemiHesapla(musteriId);
+            var value = await _musteriFaturaService.GrafikVerisi(musteriId);
+            ViewBag.SeyirJson = System.Text.Json.JsonSerializer.Serialize(value);
+
+            return View();
+        }
 
         public async Task<IActionResult> Create()
         {

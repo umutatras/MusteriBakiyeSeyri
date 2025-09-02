@@ -19,7 +19,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.Id</td>
+                <td><a href="/MusteriFatura/EnYuksekBorcDonemi?musteriId=@item.MusteriId">@item.Id</a></td>
                 <td>@item.MusteriUnvan</td>
                 <td>@item.OdemeTarihi</td>
                 <td>@item.FaturaTarihi</td>
