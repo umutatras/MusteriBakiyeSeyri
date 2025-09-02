@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MusteriBakiyeSeyri.Entities.Fatura;
 using MusteriBakiyeSeyri.Entities.Musteri;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MusteriBakiyeSeyri.DataAccess.Context;
 

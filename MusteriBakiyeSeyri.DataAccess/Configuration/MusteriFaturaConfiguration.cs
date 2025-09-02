@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MusteriBakiyeSeyri.Entities.Fatura;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MusteriBakiyeSeyri.DataAccess.Configuration
 {
@@ -27,7 +22,7 @@ namespace MusteriBakiyeSeyri.DataAccess.Configuration
                    .HasColumnName("odeme_tarihi")
                    .HasColumnType("datetime");
 
-            builder.HasOne(x=>x.MusteriTanim).WithMany(y => y.MusteriFaturalari).HasForeignKey(z => z.MusteriId);   
+            builder.HasOne(x => x.MusteriTanim).WithMany(y => y.MusteriFaturalari).HasForeignKey(z => z.MusteriId);
         }
     }
 }

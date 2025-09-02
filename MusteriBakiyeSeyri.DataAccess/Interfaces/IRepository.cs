@@ -1,14 +1,10 @@
-﻿using MusteriBakiyeSeyri.SharedLibrary.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using MusteriBakiyeSeyri.Entities;
+using MusteriBakiyeSeyri.SharedLibrary.Enums;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MusteriBakiyeSeyri.DataAccess.Interfaces;
 
-public interface IRepository<T> where T : class
+public interface IRepository<T> where T : BaseEntity
 {
     Task<List<T>> GetAllAsync();
     Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter);

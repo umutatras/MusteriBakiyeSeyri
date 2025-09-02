@@ -3,12 +3,7 @@ using MusteriBakiyeSeyri.DataAccess.Context;
 using MusteriBakiyeSeyri.DataAccess.Interfaces;
 using MusteriBakiyeSeyri.Entities;
 using MusteriBakiyeSeyri.SharedLibrary.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MusteriBakiyeSeyri.DataAccess.Repositories;
 
