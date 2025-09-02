@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using MusteriBakiyeSeyri.Business.Interfaces;
-using MusteriBakiyeSeyri.DataAccess.UnitOfWork;
 using MusteriBakiyeSeyri.DTOs.MusteriTanim;
 
 namespace MusteriBakiyeSeyri.WebApp.Controllers
@@ -17,7 +15,7 @@ namespace MusteriBakiyeSeyri.WebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var liste=await _ms.GetAllMusteriTanimAsync();
+            var liste = await _ms.GetAllMusteriTanimAsync();
             return View(liste);
         }
         public IActionResult Create()
@@ -30,9 +28,9 @@ namespace MusteriBakiyeSeyri.WebApp.Controllers
         public async Task<IActionResult> Create(MusteriTanimAddDto model)
         {
 
-            await _ms.AddMusteriTanimAsync(model);          
-           return RedirectToAction(nameof(Index)); // Liste sayfasına dön
-            
+            await _ms.AddMusteriTanimAsync(model);
+            return RedirectToAction(nameof(Index)); // Liste sayfasına dön
+
         }
     }
 }

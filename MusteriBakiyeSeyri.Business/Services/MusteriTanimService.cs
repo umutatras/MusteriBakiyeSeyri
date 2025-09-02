@@ -3,11 +3,6 @@ using MusteriBakiyeSeyri.Business.Interfaces;
 using MusteriBakiyeSeyri.DataAccess.UnitOfWork;
 using MusteriBakiyeSeyri.DTOs.MusteriTanim;
 using MusteriBakiyeSeyri.Entities.Musteri;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MusteriBakiyeSeyri.Business.Services
 {
@@ -26,18 +21,18 @@ namespace MusteriBakiyeSeyri.Business.Services
             {
                 Unvan = musteriTanim.Unvan
             };
-           await _uow.GetRepository<MusteriTanim>().AddAsync(entity);
+            await _uow.GetRepository<MusteriTanim>().AddAsync(entity);
             await _uow.SaveChangesAsync();
         }
 
         public async Task DeleteProductAsync(int id)
         {
             MusteriTanim entity = await _uow.GetRepository<MusteriTanim>().GetById(id);
-            if(entity is null)
+            if (entity is null)
                 throw new NotFoundException($"Musteri with Id {id} not found.");
 
             _uow.GetRepository<MusteriTanim>().Remove(entity);
-            await _uow.SaveChangesAsync();  
+            await _uow.SaveChangesAsync();
         }
 
         public async Task<List<MusteriTanimListDto>> GetAllMusteriTanimAsync()
@@ -46,7 +41,7 @@ namespace MusteriBakiyeSeyri.Business.Services
 
             var liste = await _uow.GetRepository<MusteriTanim>().GetAllAsync();
 
-            dto=liste.Select(s=>new MusteriTanimListDto
+            dto = liste.Select(s => new MusteriTanimListDto
             {
                 Id = s.Id,
                 Unvan = s.Unvan
@@ -73,8 +68,8 @@ namespace MusteriBakiyeSeyri.Business.Services
                 throw new NotFoundException($"Musteri with Id {musteriTanim.Id} not found.");
 
             entity.Unvan = musteriTanim.Unvan;
-            await _uow.GetRepository<MusteriTanim>().UpdateAsync(entity);  
-            await _uow.SaveChangesAsync(); 
+            await _uow.GetRepository<MusteriTanim>().UpdateAsync(entity);
+            await _uow.SaveChangesAsync();
         }
     }
 }

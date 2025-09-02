@@ -4,8 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using MusteriBakiyeSeyri.Business.Interfaces;
 using MusteriBakiyeSeyri.Business.Services;
 using MusteriBakiyeSeyri.DataAccess.Context;
-using MusteriBakiyeSeyri.DataAccess.Interfaces;
-using MusteriBakiyeSeyri.DataAccess.Repositories;
 using MusteriBakiyeSeyri.DataAccess.UnitOfWork;
 
 namespace MusteriBakiyeSeyri.Business.DependencyResolvers.Microsoft
