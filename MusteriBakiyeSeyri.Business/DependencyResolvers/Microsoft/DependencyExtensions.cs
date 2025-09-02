@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MusteriBakiyeSeyri.Business.Interfaces;
+using MusteriBakiyeSeyri.Business.Services;
 using MusteriBakiyeSeyri.DataAccess.Context;
 using MusteriBakiyeSeyri.DataAccess.Interfaces;
 using MusteriBakiyeSeyri.DataAccess.Repositories;
@@ -18,6 +20,7 @@ namespace MusteriBakiyeSeyri.Business.DependencyResolvers.Microsoft
 
             });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IMusteriTanimService, MusteriTanimService>();
         }
     }
 
