@@ -1,0 +1,13 @@
+﻿@model MusteriBakiyeSeyri.DTOs.MusteriTanim.MusteriTanimAddDto
+
+<div class="container mt-4">
+    <h3>Müşteri Bilgisi</h3>
+    <form asp-action="Create" asp-controller="MusteriTanimi" method="post">
+        
+        <div class="mb-3">
+            <label for="musteriUnvan" class="form-label">Unvan</label>
+            <input type="text" class="form-control" asp-for="Unvan" placeholder="Müşteri Ünvanı">
+        </div>
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </form>
+</div>
