@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusteriBakiyeSeyri.Entities", "MusteriBakiyeSeyri.Entities\MusteriBakiyeSeyri.Entities.csproj", "{07117A56-BDE7-4229-BEB5-B01B4E0C3114}"
 EndProject
@@ -14,6 +14,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusteriBakiyeSeyri.SharedLibrary", "MusteriBakiyeSeyri.SharedLibrary\MusteriBakiyeSeyri.SharedLibrary.csproj", "{BC943C87-68FB-472B-852C-396DC4362876}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusteriBakiyeSeyri.WebApp", "MusteriBakiyeSeyri.WebApp\MusteriBakiyeSeyri.WebApp.csproj", "{252E08D4-C686-4CC5-9870-D7DAAA720F3C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BC95B041-5505-4C64-BFFE-D8934E44E3B6}"
+	ProjectSection(SolutionItems) = preProject
+		dbscript.txt = dbscript.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
