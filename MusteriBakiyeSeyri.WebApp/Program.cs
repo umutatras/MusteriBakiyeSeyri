@@ -1,5 +1,8 @@
+using MusteriBakiyeSeyri.Business.DependencyResolvers.Microsoft;
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDependencies(builder.Configuration);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
