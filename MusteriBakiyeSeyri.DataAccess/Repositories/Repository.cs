@@ -55,19 +55,16 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
     public void Remove(T entity)
     {
         _context.Set<T>().Remove(entity);
-        _context.SaveChanges();
 
     }
 
     public async Task AddAsync(T entity)
     {
         await _context.Set<T>().AddAsync(entity);
-        await _context.SaveChangesAsync();
     }
 
     public async Task UpdateAsync(T entity)
     {
         _context.Entry(entity).State = EntityState.Modified;
-        await _context.SaveChangesAsync();
     }
 }
