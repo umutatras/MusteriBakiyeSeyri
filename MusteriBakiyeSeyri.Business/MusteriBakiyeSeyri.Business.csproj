@@ -8,10 +8,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MusteriBakiyeSeyri.DataAccess\MusteriBakiyeSeyri.DataAccess.csproj" />
+    <ProjectReference Include="..\MusteriBakiyeSeyri.DTOs\MusteriBakiyeSeyri.DTOs.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
     <Folder Include="Mappings\" />
     <Folder Include="Services\" />
   </ItemGroup>
